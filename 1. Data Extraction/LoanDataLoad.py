@@ -41,6 +41,33 @@ def insertIntoSQL(allDicts, LoadIndicator):
                           + str(dicts["Price"]) + " , '" \
                           + str(dicts["Selected Pool ID"]) + "', '" \
                           + str(dicts["Servicer"]) + "' )"
+        elif LoadIndicator == 5:
+            insertQuery = "INSERT INTO dbo.OptLoanData (cID, AmortTerm, Amount, cCode , Channel, DTI, FICO, HighBalFlag, LockType, LTV, PropOcc, PropState , PropType, PropUnits, Purpose , RefiType ) " \
+                          "VALUES ( '" + str(dicts["cID"]) + "' , " \
+                          + str(dicts["AmortTerm"]) + " , " \
+                          + str(dicts["Amount"]) + ", '" \
+                          + str(dicts["cCode"]) + "', '" \
+                          + str(dicts["Channel"]) + "', " \
+                          + str(dicts["DTI"]) + ", " \
+                          + str(dicts["FICO"]) + ", '" \
+                          + str(dicts["HighBalFlag"]) + "', '" \
+                          + str(dicts["LockType"]) + "', " \
+                          + str(dicts["LTV"]) + ", '" \
+                          + str(dicts["PropOcc"]) + "', '" \
+                          + str(dicts["PropState"]) + "', '" \
+                          + str(dicts["PropType"]) + "', " \
+                          + str(dicts["PropUnits"]) + ", '" \
+                          + str(dicts["Purpose"]) + "', '" \
+                          + str(dicts["RefiType"]) + "' )"
+        elif LoadIndicator == 6:
+            insertQuery = "INSERT INTO dbo.LoanResultData ( cId , [Rank], Price, ValMethodID, ValSpecID, Coupon, DerivedSettleOrdinal ) " \
+                          "VALUES ( '" + str(dicts["cId"]) + "' , " \
+                          + str(dicts["Rank"]) + " , " \
+                          + str(dicts["Price"]) + " , '" \
+                          + str(dicts["ValMethodID"]) + "', '" \
+                          + str(dicts["ValSpecID"]) + "', " \
+                          + str(dicts["Coupon"]) + ", '" \
+                          + str(dicts["DerivedSettleOrdinal"]) + "' )"
         cursor.execute(insertQuery)
     cursor.commit()
     cursor.close()
@@ -66,6 +93,7 @@ def main(arg, LoadIndic):
 if __name__ == "__main__":
     #set the name of folder which includes all JSON files of Loan data
 
+    """
     DataFolder = "Pool Optimization Data for TC v5/Loan Data"
     print('Data extraction step is started here ... ')
     main(DataFolder, 1)
@@ -82,5 +110,16 @@ if __name__ == "__main__":
     DataFolder = "Pool Optimization Data for TC v5/Baseline (Constraints Set B)"
     main(DataFolder, 4)
     print('Successfully extracted data from Baseline (Constraints Set B) Data JSON file')
+    
 
+    DataFolder = "D:/Items/MIU/1. №-1 Career/Technical Assessment/Black Knight/Mortgage Pooling/Mortgage Pooling/Optimization Data 1/Loan Data"
+    print('Data extraction step is started here ... ')
+    main(DataFolder, 5)
+    print('Successfully extracted data from Loan Data JSON file')
+    
+    """
 
+    DataFolder = "D:/Items/MIU/1. №-1 Career/Technical Assessment/Black Knight/Mortgage Pooling/Mortgage Pooling/Optimization Data 2/Loan Results Data"
+    print('Data extraction step is started here ... ')
+    main(DataFolder, 6)
+    print('Successfully extracted data from Loan Data JSON file')
